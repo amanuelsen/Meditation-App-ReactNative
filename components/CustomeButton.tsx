@@ -22,7 +22,7 @@ const CustomeButton = ({ onPress, title, textStyles = {}, containerStyle = {} }:
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: 'green',
+        backgroundColor: 'white',
         borderRadius: 12,
         minHeight: 62,
         justifyContent: 'center',
