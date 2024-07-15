@@ -14,7 +14,10 @@ const Meditate = () => {
   const [isMeditating, setIsMeditating] = useState(false);
   const [audioSound, setSound]=useState<Audio.Sound>();
   const [isPlayingAudio,setisPlayingAudio]= useState(false);
-
+  const handleAdjustDuration=()=>{
+    if(isMeditating) toggleMeditation();
+    router.push("/(modal)/adjust-meditation-duration");
+  }
   useEffect(() => {
     let timerId: NodeJS.Timeout;
 
@@ -91,8 +94,13 @@ const Meditate = () => {
           </View>
           <View style={styles.buttonContainer}>
             <CustomeButton
+              title="Adjust duration"
+              onPress={handleAdjustDuration}
+            />
+              <CustomeButton
               title="Start meditation"
               onPress={toggleMeditation}
+              containerStyle={styles.customButtonstyle}
             />
           </View>
         </AppGradient>
@@ -105,6 +113,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     
+  },
+  customButtonstyle:{
+    marginTop:4,
+
   },
   imageBackground: {
     flex: 1,

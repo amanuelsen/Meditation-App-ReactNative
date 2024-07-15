@@ -18,7 +18,9 @@ export default function Rootlayout(){
        <Stack>
         <Stack.Screen name="(tabs)" options={{headerShown:false}} />    
         <Stack.Screen name="index" options={{headerShown:false}} /> 
-        <Stack.Screen name="meditate/[id]" options={{headerShown:false}} />    
+        <Stack.Screen name="meditate/[id]" options={{headerShown:false}} />
+        <Stack.Screen name="(model)/adjust-meditation-duration" options={{headerShown:false, presentation:"modal"}} />    
+    
    
 
         </Stack>

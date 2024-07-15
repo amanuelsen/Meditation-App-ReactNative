@@ -1,0 +1,3 @@
+interface TimerContextType{
+    duration:number;
+}
