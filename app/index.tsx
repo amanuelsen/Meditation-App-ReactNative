@@ -1,38 +1,65 @@
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
-import React from 'react';
-import beachImage from "@/assets/meditation-images/beach.webp";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Text, Image, ImageBackground } from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomButton from "@/components/CustomButton";
+import AppGradient from "@/components/AppGradient";
 import { useRouter } from "expo-router";
-import CustomeButton from '@/components/CustomeButton';
+import Animated, {
+    FadeInDown,
+    FadeInUp,
+    withSpring,
+} from "react-native-reanimated";
+
+import beachImage from "@/assets/meditation-images/beach.webp";
+
 const App = () => {
-  const router=useRouter();
-  return (
-    <View style={{ flex: 1 }}>
-      <ImageBackground source={beachImage} resizeMode="cover" style={{ flex: 1 }}>
-        
-        <LinearGradient colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.8)"]} style={{ flex: 1 }}>
-          <SafeAreaView  style={{ flex: 1, marginHorizontal: 20, marginVertical: 48, justifyContent: 'space-between' }}>
-            <View>
-              <Text style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: 32 }}>Simple Meditation</Text>
-              <Text style={{ textAlign: 'center', color: 'white', fontSize: 24, marginTop: 12 }}>Simplifying for everyone</Text>
-            </View>
-            <View>
-              <CustomeButton
-                title='Get Started'
-                
-                onPress={() =>router.push("/nature-meditate") }
-              >
-                <Text style={{ color: 'black', fontWeight: '600', fontSize: 18 }}>Get started</Text>
-              </CustomeButton>
-            </View>
-            <StatusBar style="light" />
-          </SafeAreaView>
-        </LinearGradient>
-      </ImageBackground>
-    </View>
-  );
-}
+    const router = useRouter();
+
+    return (
+        <View className="flex-1">
+            <ImageBackground
+                source={beachImage}
+                resizeMode="cover"
+                className="flex-1"
+            >
+                <AppGradient
+                    // Background Linear Gradient
+                    colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.8)"]}
+                >
+                    <SafeAreaView className="flex flex-1 px-1 justify-between">
+                        <Animated.View
+                            entering={FadeInDown.delay(300)
+                                .mass(0.5)
+                                .stiffness(80)
+                                .springify(20)}
+                        >
+                            <Text className="text-center text-white font-bold text-4xl">
+                                Simple Meditation
+                            </Text>
+                            <Text className="text-center text-white font-regular text-2xl mt-3">
+                                Simplifying Meditation for Everyone
+                            </Text>
+                        </Animated.View>
+
+                        <Animated.View
+                            entering={FadeInDown.delay(300)
+                                .mass(0.5)
+                                .stiffness(80)
+                                .springify(20)}
+                        >
+                            <CustomButton
+                                onPress={() => router.push("/nature-meditate")}
+                                title="Get Started"
+                            />
+                        </Animated.View>
+
+                        <StatusBar style="light" />
+                    </SafeAreaView>
+                </AppGradient>
+            </ImageBackground>
+        </View>
+    );
+};
 
 export default App;

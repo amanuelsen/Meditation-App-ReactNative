@@ -21,7 +21,7 @@ interface TimerProviderProps {
 }
 
 const TimerProvider = ({ children }: TimerProviderProps) => {
-    const [duration, setDuration] = useState<number>(10);
+    const [duration, setDuration] = useState(10);
 
     return (
         <TimerContext.Provider value={{ duration, setDuration }}>
